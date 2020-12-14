@@ -63,6 +63,14 @@ export const TextLogin = styled.p`
   color: #575A89;
   font-size: 16px;
   font-weight: 500;
+
+  ${props => props.subtitle && css`
+    padding: 50px 0 0 90px;
+    width: 525px;
+    font-size: 22px;
+    position: absolute;
+    bottom: 50px;
+  `}
 `
 
 export const ImgBanner = styled.img``

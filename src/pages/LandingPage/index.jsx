@@ -40,6 +40,7 @@ function LandingPage() {
         </FormUnform>
         <ImgBanner src={Banner} />
       </Content>
+      <TextLogin subtitle>Descobrir e conectar desenvolvedores é o nosso lema</TextLogin>
     </Container>
   )
 }
