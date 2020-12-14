@@ -65,7 +65,7 @@ export const TextLogin = styled.p`
   font-weight: 500;
 
   ${props => props.subtitle && css`
-    padding: 50px 0 0 90px;
+    padding: 0 0 0 90px;
     width: 525px;
     font-size: 22px;
     position: absolute;
