@@ -23,7 +23,7 @@ export const ImgLogo = styled.img``
 
 export const SignUpButton = styled.button`
   width: 200px;
-  height: 50px;
+  height: 40px;
   border: 0;
   border-radius: 5px;
   background: #575A89;
@@ -38,7 +38,6 @@ export const SignUpButton = styled.button`
 
   ${props => props.login && css`
     width: 100px;
-    height: 40px;
     align-self: flex-start;
     margin-top: 10px;
   `}

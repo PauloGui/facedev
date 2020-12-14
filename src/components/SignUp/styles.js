@@ -31,7 +31,7 @@ export const FormUnform = styled(Form)`
 
 export const Button = styled.button`
   width: 80px;
-  height: 45px;
+  height: 40px;
   border: 0;
   font-weight: 500;
   border-radius: 5px;
