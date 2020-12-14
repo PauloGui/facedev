@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Input from '../../components/Input'
-
+import SignUp from '../../components/SignUp'
 import {
   Container,
+  WrapperDrop,
   TopContainer,
   ImgLogo,
   SignUpButton,
@@ -16,11 +17,19 @@ import Logo from '../../assets/logo.svg'
 import Banner from '../../assets/banner_landingpage.svg'
 
 function LandingPage() {
+  const [showSignUp, setShowSignUp] = useState(false)
+
   return (
     <Container>
       <TopContainer>
         <ImgLogo src={Logo} />
-        <SignUpButton>Criar uma conta</SignUpButton>
+        <WrapperDrop>
+          <SignUpButton onClick={() => setShowSignUp(!showSignUp)}>Criar uma conta</SignUpButton>
+          {
+            showSignUp &&
+            <SignUp setShowSignUp={setShowSignUp} />
+          }
+        </WrapperDrop>
       </TopContainer>
       <Content>
         <FormUnform>

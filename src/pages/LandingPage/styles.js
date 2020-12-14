@@ -10,6 +10,8 @@ export const Container = styled.div`
   flex-direction: column;
 `
 
+export const WrapperDrop = styled.div``
+
 export const TopContainer = styled.div`
   display: flex;
   align-items: center;
@@ -26,6 +28,7 @@ export const SignUpButton = styled.button`
   border-radius: 5px;
   background: #575A89;
   color: #FFF;
+  outline: none;
   transition: 0.2s;
   cursor: pointer;
 
