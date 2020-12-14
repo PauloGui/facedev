@@ -1,12 +1,16 @@
 import styled, { css } from 'styled-components'
 
 export const Input = styled.input`
-  width: 95%;
+  width: 100%;
   margin: 10px 0;
   padding: 10px 5px;
-  border: 1px solid #ccc;
+  border: 0;
   border-radius: 5px;
   outline: none;
+
+  ::placeHolder{
+    color: #999;
+  }
   ${props => props.withError && css`
     border: 1px solid #f00;
     margin-bottom: 2px;
