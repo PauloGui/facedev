@@ -28,26 +28,11 @@ export const  Wrapper = styled.div`
 export const  Left = styled.div`
   display: flex;
   align-items: center;
+
 `
 
 export const  LogoImg = styled.img`
   height: 40px;
-`
-
-export const  InputSearch = styled.input`
-  margin-left: 16px;
-
-  background: #fff;
-  color: #000;
-  font-size: 14px;
-  padding: 7.5px 8px;
-  border: none;
-  outline: none;
-  border-radius: 2px;
-
-  &:focus{
-    background: #fff;
-  }
 `
 
 export const  Right = styled.div`

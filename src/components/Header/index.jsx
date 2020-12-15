@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
-
+import InputSearch from '../InputSearch'
 import {
   Container,
   Wrapper,
   Left,
   LogoImg,
-  InputSearch,
   Right,
   Button,
   HomeIcon,
@@ -28,7 +27,7 @@ function Header() {
       <Wrapper>
         <Left>
           <LogoImg src={Logo} />
-          <InputSearch placeholder='Pesquisar' />
+          <InputSearch />
         </Left>
         <Right>
           <Button className='active'>
