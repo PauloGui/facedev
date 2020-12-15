@@ -1,8 +1,8 @@
 import React from 'react'
-import LeftColumn from '../LeftColumn'
-import MiddleColumn from '../MiddleColumn'
-import RightColumn from '../RightColumn'
-import Header from '../Header'
+import LeftColumn from '../../components/LeftColumn'
+import MiddleColumn from '../../components/MiddleColumn'
+import RightColumn from '../../components/RightColumn'
+import Header from '../../components/Header'
 
 import { Container } from './styles'
 

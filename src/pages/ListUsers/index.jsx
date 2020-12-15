@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../../components/Header'
 import List from '../../components/List'
-import NewsUsers from '../../components/NewsUsers'
+import RightColumn from '../../components/RightColumn'
 
 import { Container, Wrapper, FeedList } from './styles'
 
@@ -13,7 +13,7 @@ function ListUsers() {
         <FeedList>
           <List />
         </FeedList>
-        <NewsUsers />
+        <RightColumn />
       </Wrapper>
     </Container>
   )
