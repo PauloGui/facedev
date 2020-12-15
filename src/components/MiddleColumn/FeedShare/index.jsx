@@ -9,7 +9,7 @@ import {
   Button
 } from './styles'
 
-function NewPost() {
+function FeedShare() {
   return (
     <Container>
       <Wrapper>
@@ -23,4 +23,4 @@ function NewPost() {
   )
 }
 
-export default NewPost
+export default FeedShare
