@@ -2,9 +2,10 @@ import styled, { css } from 'styled-components'
 import Gradient from '../../assets/gradient.jpg'
 
 export const Container = styled.div`
+  position: sticky;
+  top: 60px;
   margin-top: 60px;
   width: 164px;
-  position: fixed;
 `
 export const Wrapper = styled.div`
   border-radius: 10px;
