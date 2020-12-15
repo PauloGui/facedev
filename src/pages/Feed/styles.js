@@ -11,3 +11,9 @@ export const Wrapper = styled.div`
   max-width: 1128px;
   margin: 0 auto;
 `
+
+export const FeedCenter = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+`
