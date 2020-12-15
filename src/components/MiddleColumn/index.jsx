@@ -11,6 +11,8 @@ function MiddleColumn() {
       <FeedPost />
       <FeedPost />
       <FeedPost />
+      <FeedPost />
+      <FeedPost />
     </Container>
   )
 }

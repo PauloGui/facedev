@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  padding: 60px 40px 0;
+  padding: 60px 0 0;
 
   display: flex;
   justify-content: center;

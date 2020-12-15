@@ -1,13 +1,12 @@
 import React from 'react'
+import Layout from './components/Layout'
 import Global from './global'
-import Feed from './pages/Feed'
-import ListUsers from './pages/ListUsers'
 
 function App() {
   return (
     <div className="App">
       <Global />
-      <ListUsers />
+      <Layout />
     </div>
   )
 }

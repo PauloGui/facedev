@@ -11,7 +11,7 @@ import {
   Bio
 } from './styles'
 
-function BoxProfile() {
+function ProfilePanel() {
   return (
     <Container>
       <Wrapper>
@@ -32,4 +32,4 @@ function BoxProfile() {
   )
 }
 
-export default BoxProfile
+export default ProfilePanel

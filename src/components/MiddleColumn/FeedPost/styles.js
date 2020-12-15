@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 20px 40px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 550px;
+  
+  @media (min-width: 1180px) {
+    margin-top: 16px;
+  }
 `
 
 export const Wrapper = styled.div`

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import Gradient from '../../assets/gradient.jpg'
+import Gradient from '../../../assets/gradient.jpg'
 
 export const Container = styled.div`
   position: sticky;
