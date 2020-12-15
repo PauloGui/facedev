@@ -1,13 +1,12 @@
 import React from 'react'
-import Header from './components/Header'
 import Global from './global'
-import LandingPage from './pages/LandingPage'
+import Feed from './pages/Feed'
 
 function App() {
   return (
     <div className="App">
       <Global />
-      <Header />
+      <Feed />
     </div>
   )
 }
