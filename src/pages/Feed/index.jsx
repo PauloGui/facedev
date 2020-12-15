@@ -6,7 +6,7 @@ import Header from '../../components/Header'
 
 import { Container } from './styles'
 
-function Layout() {
+function Feed() {
   return(
     <Container>
       <Header />
@@ -20,4 +20,4 @@ function Layout() {
   )
 }
 
-export default Layout
+export default Feed
