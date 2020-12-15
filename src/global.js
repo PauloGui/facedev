@@ -5,10 +5,10 @@ export default createGlobalStyle`
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        font-family: Poppins;
+        font-family: Roboto, sans-serif;
     }
 
     body {
-        background: #8DE4FF;
+        background: #eee;
     }
 `

@@ -8,6 +8,7 @@ export const Container = styled.div`
   
   display: flex;
   flex-direction: column;
+  background: #8DE4FF;
 `
 
 export const WrapperDrop = styled.div``
