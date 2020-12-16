@@ -14,7 +14,7 @@ import {
 
 function FeedPost() {
   return (
-    <Container>
+    <Container className='column-post'>
       <Wrapper>
         <BoxPost>
           <Profile>
