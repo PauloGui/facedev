@@ -5,7 +5,7 @@ import { Container } from './styles'
 
 function RightColumn() {
   return (
-    <Container>
+    <Container className='right-column'>
       <TrandingUsers />
     </Container>
   )

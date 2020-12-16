@@ -4,7 +4,7 @@ import { Container } from './styles'
 
 function LeftColumn() {
   return (
-    <Container>
+    <Container className='left-column'>
       <ProfilePanel />
     </Container>
   )

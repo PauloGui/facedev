@@ -1,12 +1,12 @@
 import React from 'react'
-import Feed from './pages/Feed'
+import Routes from './routes'
 import Global from './global'
 
 function App() {
   return (
     <div className="App">
       <Global />
-      <Feed />
+      <Routes />
     </div>
   )
 }
