@@ -27,6 +27,7 @@ export default function InputUnform({ name, type, ...rest }) {
         ref={inputRef}
         defaultValue={defaultValue}
         {...rest}
+        className='uninput'
       />
       {
         !!error &&

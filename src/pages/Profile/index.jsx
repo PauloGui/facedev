@@ -7,6 +7,7 @@ import FeedPost from '../../components/MiddleColumn/FeedPost'
 import { Container, Wrapper, ContentProfile } from './styles'
 
 function Profile() {
+
   return(
     <Container>
       <Header />
