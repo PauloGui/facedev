@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components'
 import Gradient from '../../assets/gradient.jpg'
 import {BiImageAdd} from 'react-icons/bi'
 import {BsPencilSquare} from 'react-icons/bs'
+import { GoTriangleUp } from 'react-icons/go'
+
 
 export const Container = styled.div`
   border-radius: 10px;
@@ -118,4 +120,48 @@ export const PencilIcon = styled(BsPencilSquare)`
   width: 18px;
   height: 18px;
   cursor: pointer;
+`
+
+export const DropRemoveImg = styled.div`
+  background: #fff;
+  z-index: 10;
+  position: absolute;
+  margin-top: 110px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: -20px;
+  box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  ${props => props.banner && css`
+    margin-top: 150px;
+    margin-right: -5px;
+  `}
+`
+
+
+export const TriangleDrop = styled(GoTriangleUp)`
+  position: absolute;
+  z-index: 20;
+  color: #fff;
+  right: 20px;
+  background: transparent;
+  margin-top: -75px;
+
+`
+export const ButtonDrop = styled.button`
+  border: 0;
+  background: transparent;
+  color: #575A89;
+  padding: 5px;
+  text-decoration: underline;
+  cursor: pointer;
+`
+
+export const Repositories = styled.div`
+  display: flex;
+  padding: 20px 50px;
 `
