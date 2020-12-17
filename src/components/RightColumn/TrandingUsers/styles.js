@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
 
   border-radius: 10px;
+  border: 1px solid #e9e5df;
   background: #FFF;
   padding: 8px 12px 16px;
 

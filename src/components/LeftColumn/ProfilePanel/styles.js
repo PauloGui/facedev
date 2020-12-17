@@ -10,6 +10,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   border-radius: 10px;
   background: #FFF;
+  border: 1px solid #e9e5df;
 
   display: flex;
   flex-direction: column;

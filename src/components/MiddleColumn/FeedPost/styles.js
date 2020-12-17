@@ -19,6 +19,7 @@ export const BoxPost = styled.div`
   width: 100%;
   background: #FFF;
   border-radius: 10px;
+  border: 1px solid #e9e5df;
   padding: 10px;
 
   & + div {
