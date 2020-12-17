@@ -6,7 +6,8 @@ export const Container = styled.div`
 
     .bg-skeleton {
       width: 100%;
-      height: 70px;
+      height: 100px;
+      border-radius: 10px 10px 0 0;
       filter: brightness(96%);
     }
     span {
@@ -19,7 +20,7 @@ export const Container = styled.div`
         width: 72px;
         height: 72px;
         border-radius: 50%;
-        margin: -36px 0 10px;
+        margin: -86px 0 10px;
       }
       .row-skeleton {
         height: 12px;
