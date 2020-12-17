@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
+import {RiImageAddFill} from 'react-icons/ri'
 
 export const Container = styled.div`
   padding: 60px 0 0;
@@ -38,7 +39,27 @@ export const Footer = styled.div`
   padding-top: 10px;
 `
 
-export const Input = styled.input``
+export const Inputs = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+export const Input = styled.input`
+  border: 0;
+  flex: 1;
+  padding-left: 5px;
+  ${props => props.images && css`
+    display: none;
+  `}
+`
+
+export const ImageIcon = styled(RiImageAddFill)`
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  color: #575A89;
+  cursor: pointer;
+`
 
 export const Button = styled.button`
   height: 40px;

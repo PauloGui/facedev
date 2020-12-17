@@ -1,10 +1,14 @@
 import React from 'react'
 
-import { Input } from './styles'
+import { Container, Input, Searchicon, Button } from './styles'
 
 function InputSearch() {
   return (
-    <Input placeholder='Pesquisar' />
+    <Container>
+      <Input placeholder='Pesquisar' />
+      <Button><Searchicon /></Button>
+    </Container>
+
   )
 }
 
