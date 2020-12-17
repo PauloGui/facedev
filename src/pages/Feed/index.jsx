@@ -7,15 +7,16 @@ import Header from '../../components/Header'
 import { Container } from './styles'
 
 function Feed() {
-  return(
+
+  return (
     <Container>
       <Header />
 
-      <main>
-        <LeftColumn />
-        <MiddleColumn />
-        <RightColumn />
-      </main>
+        <main>
+          <LeftColumn />
+          <MiddleColumn />
+          <RightColumn />
+        </main>
     </Container>
   )
 }
