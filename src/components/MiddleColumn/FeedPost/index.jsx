@@ -24,7 +24,8 @@ function FeedPost() {
               <Span>Líder de Desenvolvimento</Span>
             </InfoProfile>
           </Profile>
-          <TextPost>Um casal de prear e dois bigbig pra quem derrubar essa aplicação!
+          <TextPost>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
           </TextPost>
         </BoxPost>
       </Wrapper>
