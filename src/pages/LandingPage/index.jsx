@@ -19,7 +19,7 @@ import {
 import Logo from '../../assets/logo.svg'
 import Banner from '../../assets/banner_landingpage.svg'
 
-function LandingPage({history}) {
+function LandingPage() {
   const { setAuthUser } = useAuth()
 
   const [showSignUp, setShowSignUp] = useState(false)
@@ -48,7 +48,6 @@ function LandingPage({history}) {
       signIn.password = data.password
 
       const resp = await axios.post('sessions', signIn)
-      history.push('/')
       setAuthUser({ authenticated: true, token: resp.data.auth })
       localStorage.setItem('@facedev_token', resp.data.auth)
     } catch (err) {

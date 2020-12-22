@@ -107,9 +107,11 @@ export const  DropProfile = styled.div`
   button {
     color: #575A89;
     text-decoration: none;
-    padding: 5px;
+    padding: 6px;
+    outline: none;
     background: transparent;
     border: 0;
+    cursor: pointer;
   }
 `
 
