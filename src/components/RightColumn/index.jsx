@@ -10,7 +10,7 @@ function RightColumn() {
 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false);
+      setLoading(false)
     }, 1000)
   }, [])
   

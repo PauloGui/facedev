@@ -1,5 +1,6 @@
 import React, { useContext, createContext, useState, useEffect } from 'react'
 import axios from 'axios'
+import LoadingLandingPage from '../components/Shimmer/LoadingLandingPage'
 
 const AuthContext = createContext()
 
@@ -22,7 +23,7 @@ function AuthProvider({ children }) {
     <AuthContext.Provider value={{ authUser, setAuthUser }}>
       {
         loading &&
-        'Carregando...'
+        <LoadingLandingPage />
       }
       {
         !loading &&
