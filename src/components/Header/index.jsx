@@ -45,11 +45,11 @@ function Header() {
               showProfile &&
               <DropProfile>
                 <TriangleDrop />
-                <a href='/'> <UserProfileIcon />Meu Perfil</a>
-                <Button exit onClick={() => {
+                <button> <UserProfileIcon />Meu Perfil</button>
+                <button exit onClick={() => {
                   localStorage.removeItem('@facedev_token')
                   setAuthUser({ authenticated: false })
-                }}> <LogOutIcon /> Sair</Button>
+                }}> <LogOutIcon /> Sair</button>
               </DropProfile>
             }
           </Button>

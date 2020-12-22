@@ -104,10 +104,12 @@ export const  DropProfile = styled.div`
   justify-content: center;
 
 
-  a {
+  button {
     color: #575A89;
     text-decoration: none;
     padding: 5px;
+    background: transparent;
+    border: 0;
   }
 `
 
