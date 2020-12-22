@@ -5,10 +5,13 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 
   background: #8DE4FF;
 `
 
 export const ImgLogo = styled.img``
 
-export const ImgLoading = styled.img``
+export const ImgLoading = styled.img`
+  background: transparent;
+`

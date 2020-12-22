@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import InputSearch from '../InputSearch'
+import axios from 'axios'
 import {
   Container,
   Wrapper,
@@ -21,15 +22,27 @@ import { useAuth } from '../../hooks/AuthProvider'
 
 function Header() {
   const { setAuthUser } = useAuth()
-
+  const [userSearch, setUserSearch] = useState('')
   const [showProfile, setShowProfile] = useState(false)
+
+  useEffect(() => {
+    usersList()
+  }, [])
+
+  const usersList = () => {
+    axios.get(`/searchUser?search=${userSearch}`).then(resp => {
+      return setUserSearch(resp.data)
+    }).catch((err) => {
+      alert('Usuário não cadastrado!')
+    })
+  }
 
   return (
     <Container>
       <Wrapper>
         <Left>
           <LogoImg src={Logo} />
-          <InputSearch />
+          <InputSearch value={userSearch} />
         </Left>
         <Right>
           <Button className='active'>

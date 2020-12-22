@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState, useEffect } from 'react'
 import * as yup from 'yup'
 import axios from 'axios'
 import { useAuth } from '../../hooks/AuthProvider'
@@ -18,11 +18,19 @@ import {
 } from './styles'
 import Logo from '../../assets/logo.svg'
 import Banner from '../../assets/banner_landingpage.svg'
+import LoadingLandingPage from '../../components/Shimmer/LoadingLandingPage'
 
 function LandingPage() {
   const { setAuthUser } = useAuth()
 
   const [showSignUp, setShowSignUp] = useState(false)
+  const [isLoading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
+  }, [])
 
   const formRef = useRef(null)
 
@@ -64,26 +72,30 @@ function LandingPage() {
   }, [])
   return (
     <Container>
-      <TopContainer>
-        <ImgLogo src={Logo} />
-        <WrapperDrop>
-          <SignUpButton onClick={() => setShowSignUp(!showSignUp)}>Criar uma conta</SignUpButton>
-          {
-            showSignUp &&
-            <SignUp setShowSignUp={setShowSignUp} />
-          }
-        </WrapperDrop>
-      </TopContainer>
-      <Content>
-        <FormUnform onSubmit={handleSubmit} ref={formRef}>
-          <TextLogin>Faça login para continuar</TextLogin>
-          <Input type='text' name='email' placeholder='Email' />
-          <Input type='password' name='password' placeholder='Senha' />
-          <SignUpButton login type='submit'>Entrar</SignUpButton>
-        </FormUnform>
-        <ImgBanner src={Banner} />
-      </Content>
-      <TextLogin subtitle>Descobrir e conectar desenvolvedores é o nosso lema</TextLogin>
+      { isLoading ? <LoadingLandingPage /> :
+        <>
+          <TopContainer>
+            <ImgLogo src={Logo} />
+            <WrapperDrop>
+              <SignUpButton onClick={() => setShowSignUp(!showSignUp)}>Criar uma conta</SignUpButton>
+              {
+                showSignUp &&
+                <SignUp setShowSignUp={setShowSignUp} />
+              }
+            </WrapperDrop>
+          </TopContainer>
+          <Content>
+            <FormUnform onSubmit={handleSubmit} ref={formRef}>
+              <TextLogin>Faça login para continuar</TextLogin>
+              <Input type='text' name='email' placeholder='Email' />
+              <Input type='password' name='password' placeholder='Senha' />
+              <SignUpButton login type='submit'>Entrar</SignUpButton>
+            </FormUnform>
+            <ImgBanner src={Banner} />
+          </Content>
+          <TextLogin subtitle>Descobrir e conectar desenvolvedores é o nosso lema</TextLogin>
+        </>
+      }
     </Container>
   )
 }
