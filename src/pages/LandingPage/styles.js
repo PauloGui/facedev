@@ -32,6 +32,7 @@ export const SignUpButton = styled.button`
   outline: none;
   transition: 0.2s;
   cursor: pointer;
+  font-weight: bold;
 
   :hover{
     background: ${shade(0.2, '#575A89')};
