@@ -1,22 +1,24 @@
-import React, {useContext, createContext, useState, useEffect} from 'react'
-import api from '../services/api'
+import React, { useContext, createContext, useState, useEffect } from 'react'
+import axios from 'axios'
 
 const AuthContext = createContext()
 
-function AuthProvider({children}) {
-  const [authUser, setAuthUser] = useState({ authenticated: false})
-  const [loading, setLoadgin] = useState(true)
+function AuthProvider({ children }) {
+
+  const [authUser, setAuthUser] = useState({ authenticated: false })
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const token = localStorage.getItem('@facedev_token')
-    if (!token) return setLoadgin(false)
+    const token = localStorage.getItem('@noteact_token')
+    if (!token) return setLoading(false)
 
-    api.get('/sessions', {headers: {Authorization: `Beares ${token}`}}).then(({ data }) => {
-      if(data.success) setAuthUser({ authenticated: true, token})
-      setLoadgin(false)
+    axios.get('/sessions', { headers: { Authorization: `Bearer ${token}` } }).then(({ data }) => {
+      if (data.success) setAuthUser({ authenticated: true, token })
+      setLoading(false)
     })
   }, [])
-  return(
+
+  return (
     <AuthContext.Provider value={{ authUser, setAuthUser }}>
       {
         loading &&
@@ -32,7 +34,7 @@ function AuthProvider({children}) {
 
 export function useAuth() {
   const context = useContext(AuthContext)
-  if(!context) throw new Error('useAuth must be used within an AuthProvider.')
+  if (!context) throw new Error('useAuth must be used within an AuthProvider.')
   return context
 }
 

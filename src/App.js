@@ -1,13 +1,17 @@
 import React from 'react'
+import './config'
 import Routes from './routes'
 import Global from './global'
+import AuthProvider from './hooks/AuthProvider'
 
 function App() {
   return (
-    <div className="App">
-      <Global />
-      <Routes />
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <Global />
+        <Routes />
+      </div>
+    </AuthProvider>
   )
 }
 
