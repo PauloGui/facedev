@@ -9,7 +9,7 @@ function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const token = localStorage.getItem('@noteact_token')
+    const token = localStorage.getItem('@facedev_token')
     if (!token) return setLoading(false)
 
     axios.get('/sessions', { headers: { Authorization: `Bearer ${token}` } }).then(({ data }) => {

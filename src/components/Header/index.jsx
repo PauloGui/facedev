@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import InputSearch from '../InputSearch'
 import {
   Container,
@@ -17,8 +17,10 @@ import {
   LogOutIcon
 } from './styles'
 import Logo from '../../assets/logo.svg'
+import { useAuth } from '../../hooks/AuthProvider'
 
 function Header() {
+  const { setAuthUser } = useAuth()
 
   const [showProfile, setShowProfile] = useState(false)
 
@@ -44,7 +46,10 @@ function Header() {
               <DropProfile>
                 <TriangleDrop />
                 <a href='/'> <UserProfileIcon />Meu Perfil</a>
-                <a href='/'> <LogOutIcon /> Sair</a>
+                <Button exit onClick={() => {
+                  localStorage.removeItem('@facedev_token')
+                  setAuthUser({ authenticated: false })
+                }}> <LogOutIcon /> Sair</Button>
               </DropProfile>
             }
           </Button>

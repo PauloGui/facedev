@@ -50,7 +50,7 @@ function LandingPage({history}) {
       const resp = await axios.post('sessions', signIn)
       history.push('/')
       setAuthUser({ authenticated: true, token: resp.data.auth })
-      localStorage.setItem('@noteact_token', resp.data.auth)
+      localStorage.setItem('@facedev_token', resp.data.auth)
     } catch (err) {
       if (err instanceof yup.ValidationError) {
         const validationErrors = {}
