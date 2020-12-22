@@ -19,7 +19,7 @@ import {
 import Logo from '../../assets/logo.svg'
 import Banner from '../../assets/banner_landingpage.svg'
 
-function LandingPage() {
+function LandingPage({history}) {
   const { setAuthUser } = useAuth()
 
   const [showSignUp, setShowSignUp] = useState(false)
@@ -48,6 +48,7 @@ function LandingPage() {
       signIn.password = data.password
 
       const resp = await axios.post('sessions', signIn)
+      history.push('/')
       setAuthUser({ authenticated: true, token: resp.data.auth })
       localStorage.setItem('@noteact_token', resp.data.auth)
     } catch (err) {

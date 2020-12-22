@@ -6,7 +6,7 @@ import { Container, TextSignUp, FormUnform, Button } from './styles'
 import { GoTriangleUp } from 'react-icons/go'
 import { useAuth } from '../../hooks/AuthProvider'
 
-function SignUp() {
+function SignUp({history}) {
   const { setAuthUser } = useAuth()
   const formRef = useRef(null)
 
@@ -39,6 +39,7 @@ function SignUp() {
       signUp.password = data.password
 
       const resp = await axios.post('/users', signUp)
+      history.push('/')
       setAuthUser({ authenticated: true, token: resp.data.auth })
       localStorage.setItem('@noteact_token', resp.data.auth)
     } catch (err) {
