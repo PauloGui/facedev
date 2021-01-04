@@ -1,43 +1,50 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useAuth } from '../../../hooks/AuthProvider'
 
 import {
   Container,
-  Wrapper, 
-  Span, 
-  BoxUser, 
-  ImgProfile, 
-  User, 
-  Strong, 
+  Wrapper,
+  Span,
+  BoxUser,
+  ImgProfile,
+  User,
+  Strong,
   SubTitile
 } from './styles'
+import UserProfile from '../../../assets/profile-user.png'
 
 function TrandingUsers() {
+
+  const { authUser } = useAuth()
+
+  const [lastUsers, setLastUsers] = useState([])
+
+  useEffect(() => {
+    axios.get('/lastUsers', { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
+      if (resp.data.success) {
+        setLastUsers(resp.data.users)
+      }
+    })
+  }, [])
+
+
   return (
     <Container>
       <Wrapper>
         <Span>Últimos Cadastros</Span>
         <hr />
-        <BoxUser>
-          <ImgProfile src='https://avatars2.githubusercontent.com/u/52642924?s=460&u=c1f973b2f43c255a6a13d6ddd8e6f4249cfcb341&v=4' />
-          <User>
-            <Strong>Pedro Otoniel</Strong>
-            <SubTitile>Desenvolvedor Cobol</SubTitile>
-          </User>
-        </BoxUser>
-        <BoxUser>
-          <ImgProfile src='https://avatars2.githubusercontent.com/u/52642924?s=460&u=c1f973b2f43c255a6a13d6ddd8e6f4249cfcb341&v=4' />
-          <User>
-            <Strong>Pedro Otoniel</Strong>
-            <SubTitile>Desenvolvedor Cobol</SubTitile>
-          </User>
-        </BoxUser>
-        <BoxUser>
-          <ImgProfile src='https://avatars2.githubusercontent.com/u/52642924?s=460&u=c1f973b2f43c255a6a13d6ddd8e6f4249cfcb341&v=4' />
-          <User>
-            <Strong>Pedro Otoniel</Strong>
-            <SubTitile>Desenvolvedor Cobol</SubTitile>
-          </User>
-        </BoxUser>
+        {
+          lastUsers.map(last => (
+            <BoxUser key={last.id}>
+              <ImgProfile src={last.image || UserProfile} />
+              <User>
+                <Strong>{last.name}</Strong>
+                <SubTitile>{last.title}</SubTitile>
+              </User>
+            </BoxUser>
+          ))
+        }
       </Wrapper>
     </Container>
   )
