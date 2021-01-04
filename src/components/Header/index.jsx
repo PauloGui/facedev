@@ -17,7 +17,7 @@ import {
   UserProfileIcon,
   LogOutIcon
 } from './styles'
-import Logo from '../../assets/logo.svg'
+import Logo from '../../assets/logo.png'
 import { useAuth } from '../../hooks/AuthProvider'
 
 function Header() {

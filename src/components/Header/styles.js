@@ -32,7 +32,8 @@ export const  Left = styled.div`
 `
 
 export const  LogoImg = styled.img`
-  height: 40px;
+  height: 55px;
+  padding-left: 40px;
 `
 
 export const  Right = styled.div`
