@@ -14,6 +14,11 @@ export const Container = styled.header`
   left: 0;
   right: 0;
   z-index: 10;
+
+  a{
+    text-decoration: none;
+    color: var(--color-blue-dark);
+  }
 `
 export const  Wrapper = styled.div`
   display: flex;
@@ -104,11 +109,16 @@ export const  DropProfile = styled.div`
   flex-direction: column;
   justify-content: center;
 
+  a{
+    padding: 5px 0;
+  }
+
 
   button {
     color: #575A89;
     text-decoration: none;
     padding: 6px;
+    font-size: 16px;
     outline: none;
     background: transparent;
     border: 0;
@@ -120,7 +130,7 @@ export const TriangleDrop = styled(GoTriangleUp)`
   position: absolute;
   z-index: 6;
   color: #FFF;
-  right: 26px;
+  right: 25px;
   margin-top: -85px;
 `
 

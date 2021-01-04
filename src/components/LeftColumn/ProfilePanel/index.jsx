@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import api from '../../../services/api'
+import { useAuth } from '../../../hooks/AuthProvider'
 
 import {
   Container,
@@ -10,23 +13,50 @@ import {
   Strong,
   Bio
 } from './styles'
+import UserProfile from '../../../assets/profile-user.png'
 
 function ProfilePanel() {
+
+  const { authUser } = useAuth()
+
+  const [name, setName] = useState('')
+  const [title, setTitle] = useState('')
+  const [image, setImage] = useState('')
+  const [repository, setRepository] = useState('')
+  const [followers, setFollowers] = useState('')
+  const [bio, setBio] = useState('')
+
+  useEffect(() => {
+    (async () => {
+      const resp = await axios.get('/users', { headers: { Authorization: `Bearer ${authUser.token} ` } })
+      if (resp.data.success) {
+        setName(resp.data.user.name)
+        setTitle(resp.data.user.title)
+        setImage(resp.data.user.image)
+      }
+
+      api.get('/users/' + resp.data.user.github_user).then(resp => {
+        setRepository(resp.data.public_repos)
+        setFollowers(resp.data.followers)
+        setBio(resp.data.bio)
+      })
+    })()
+  }, [])
   return (
     <Container>
       <Wrapper>
         <BoxImgs>
-          <ImgProfile src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4'  />
+          <ImgProfile src={image || UserProfile} />
         </BoxImgs>
-        <Strong>Paulo Sousa</Strong>
-        <Span title>Desenvolvedor Front-End</Span>
+        <Strong>{name}</Strong>
+        <Span titleProfile>{title}</Span>
         <hr />
         <BoxRepos>
-          <Span>90 Repositórios</Span>
-          <Span>53 Seguidores</Span>
+          <Span>{repository} Repositórios</Span>
+          <Span>{followers} Seguidores</Span>
         </BoxRepos>
         <hr />
-        <Bio>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</Bio>
+        <Bio>{bio}</Bio>
       </Wrapper>
     </Container>
   )

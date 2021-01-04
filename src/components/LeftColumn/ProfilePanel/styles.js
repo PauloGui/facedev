@@ -51,7 +51,7 @@ export const Span = styled.span`
     padding-top: 10px;
   }
 
-  ${props => props.title && css`
+  ${props => props.titleProfile && css`
     align-self: center;
     padding: 5px 0 10px 0;
   `}

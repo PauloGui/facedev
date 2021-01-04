@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import {Link} from 'react-router-dom'
 import InputSearch from '../InputSearch'
 import axios from 'axios'
 import {
@@ -41,7 +42,7 @@ function Header() {
     <Container>
       <Wrapper>
         <Left>
-          <LogoImg src={Logo} />
+          <Link to='/'><LogoImg src={Logo} /></Link>
           <InputSearch value={userSearch} />
         </Left>
         <Right>
@@ -49,7 +50,7 @@ function Header() {
             <HomeIcon />
           </Button>
           <Button>
-            <UsersIcon />
+            <Link to='/users'><UsersIcon /></Link>
           </Button>
           <Button onClick={() => setShowProfile(!showProfile)}>
             <ProfileCircle src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4' />
@@ -58,7 +59,7 @@ function Header() {
               showProfile &&
               <DropProfile>
                 <TriangleDrop />
-                <button> <UserProfileIcon />Meu Perfil</button>
+                <Link to='/profile'> <UserProfileIcon />Meu Perfil</Link>
                 <button exit onClick={() => {
                   localStorage.removeItem('@facedev_token')
                   setAuthUser({ authenticated: false })

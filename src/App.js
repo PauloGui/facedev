@@ -1,4 +1,5 @@
 import React from 'react'
+import './services/api'
 import './config'
 import Routes from './routes'
 import Global from './global'
