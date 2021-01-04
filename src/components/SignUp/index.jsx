@@ -1,12 +1,11 @@
-import React, { useCallback, useRef } from 'react'
-import Input from '../../components/Input'
+import React, {useCallback, useRef} from 'react'
 import * as yup from 'yup'
 import axios from 'axios'
-import { Container, TextSignUp, FormUnform, Button } from './styles'
-import { GoTriangleUp } from 'react-icons/go'
 import { useAuth } from '../../hooks/AuthProvider'
+import Input from '../Input'
+import { Container, FormUnform, Chevron } from './styles'
 
-function SignUp() {
+function DropSignUp() {
   const { setAuthUser } = useAuth()
   const formRef = useRef(null)
 
@@ -14,16 +13,15 @@ function SignUp() {
     try {
       const schema = yup.object().shape({
         name: yup.string()
-          .required('O Nome é obrigatório'),
+          .required('O nome é obrigatório!'),
         email: yup.string()
-          .email('O Email informado é inválido')
-          .required('O Email é obrigatório'),
-        password: yup.string()
-          .min(6, 'A senha deve ter no mínimo 6 caracteres')
-          .required('A Senha é obrigatória'),
+          .email('O email informado é inválido!')
+          .required('O email é obrigatório!'),
         github_user: yup.string()
-          .required('O Usuário do GitHub é obrigatório'),
-
+          .required('O usuáio do GitHub é obrigatório!'),
+        password: yup.string()
+          .min(6, 'A senha deve possuir no mínimo 6 caracteres')
+          .required('A senha é obrigatório!')
       })
 
       await schema.validate(data, {
@@ -38,11 +36,11 @@ function SignUp() {
       signUp.github_user = data.github_user
       signUp.password = data.password
 
-      const resp = await axios.post('/users', signUp)
-      setAuthUser({ authenticated: true, token: resp.data.auth })
+      const resp = await axios.post('users', signUp)
+      setAuthUser({ authenticated: true, token: resp.data.auth})
       localStorage.setItem('@facedev_token', resp.data.auth)
-    } catch (err) {
-      if (err instanceof yup.ValidationError) {
+    }catch(err) {
+      if(err instanceof yup.ValidationError) {
         const validationErrors = {}
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message
@@ -52,20 +50,21 @@ function SignUp() {
       }
       alert(err.toString())
     }
-  }, [])
+  })
+
   return (
     <Container>
-      <GoTriangleUp style={{ position: 'absolute', zIndex: '15', color: '#575A89', right: '15', marginTop: '-10' }} />
-      <TextSignUp>Faça cadastro e aproveite!</TextSignUp>
+      <Chevron />
+      <span>Faça cadastro e aproveite!</span>
       <FormUnform onSubmit={handleSubmit} ref={formRef}>
         <Input type='text' name='name' placeholder='Nome completo' />
         <Input type='email' name='email' placeholder='Email' />
         <Input type='text' name='github_user' placeholder='Usuário do GitHub' />
         <Input type='password' name='password' placeholder='Senha' />
-        <Button type='submit'>Salvar</Button>
+        <button type='submit'>Salvar</button>
       </FormUnform>
     </Container>
   )
 }
 
-export default SignUp
+export default DropSignUp

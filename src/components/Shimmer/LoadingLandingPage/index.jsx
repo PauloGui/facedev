@@ -1,14 +1,13 @@
 import React from 'react'
+import Logo from '../../../assets/logo.png'
+import Loading from '../../../assets/loading.svg'
 import { Container, ImgLogo, ImgLoading } from './styles'
-import Logo from '../../../assets/logo.svg'
-import Pulse from '../../../assets/Pulse-1s-200px.svg'
-
 
 function LoadingLandingPage() {
-  return (
+  return(
     <Container>
       <ImgLogo src={Logo} />
-      <ImgLoading src={Pulse} />
+      <ImgLoading src={Loading} />
     </Container>
   )
 }

@@ -1,24 +1,44 @@
 import styled from 'styled-components'
-import { Form } from '@unform/web'
 import {shade} from 'polished'
-
+import { Form } from '@unform/web'
+import { GoTriangleUp } from 'react-icons/go'
 
 export const Container = styled.div`
-  width: 270px;
-  background: #575A89;
-  border-radius: 5px;
-  z-index: 10;
-  margin-top: 10px;
-  margin-left: -70px;
-  position: absolute;
   display: flex;
   flex-direction: column;
-`
+  position: absolute;
+  z-index: 2;
+  width: 270px;
 
-export const TextSignUp = styled.p`
-  padding: 40px 0 0 0;
-  color: #FFF;
-  align-self: center;
+  top: 120px;
+  right: 150px;
+
+  background: var(--color-blue-dark);
+  color: #fff;
+  border-radius: 5px;
+
+  span {
+    align-self: center;
+    padding-top: 10px;
+  }
+
+  button {
+    height: 40px;
+    padding: 0 30px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.2s;
+
+    border: 0;
+    border-radius: 5px;
+    font-weight: bold;
+    background: #FFF;
+    color: var(--color-blue-dark);
+
+    :hover {
+      background: ${shade(0.2, '#fff')};
+    }
+  }
 `
 
 export const FormUnform = styled(Form)`
@@ -29,19 +49,10 @@ export const FormUnform = styled(Form)`
   flex-direction: column;
 `
 
-export const Button = styled.button`
-  width: 80px;
-  height: 40px;
-  border: 0;
-  font-weight: 500;
-  border-radius: 5px;
-  background: #FFF;
-  color: #575A89;
-  outline: none;
-  transition: 0.2s;
-  cursor: pointer;
-
-  :hover{
-    background: ${shade(0.2, '#FFF')};
-  }
+export const Chevron = styled(GoTriangleUp)`
+  position: absolute;
+  z-index: 3;
+  right: 20px;
+  top: -10px;
+  color: var(--color-blue-dark);
 `

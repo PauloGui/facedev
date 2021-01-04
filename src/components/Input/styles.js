@@ -7,7 +7,6 @@ export const Input = styled.input`
   border: 0;
   border-radius: 5px;
   outline: none;
-
   ::placeHolder{
     color: #999;
   }

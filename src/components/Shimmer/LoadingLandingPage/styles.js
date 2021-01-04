@@ -7,11 +7,9 @@ export const Container = styled.div`
   align-items: center;
   height: 100vh;
 
-  background: #8DE4FF;
+  background: var(--color-ciano);
 `
 
 export const ImgLogo = styled.img``
 
-export const ImgLoading = styled.img`
-  background: transparent;
-`
+export const ImgLoading = styled.img``
