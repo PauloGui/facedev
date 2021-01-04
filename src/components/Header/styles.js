@@ -120,7 +120,7 @@ export const TriangleDrop = styled(GoTriangleUp)`
   position: absolute;
   z-index: 6;
   color: #FFF;
-  right: 31px;
+  right: 26px;
   margin-top: -85px;
 `
 
