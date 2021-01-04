@@ -5,7 +5,7 @@ import { useAuth } from '../../hooks/AuthProvider'
 import Input from '../Input'
 import { Container, FormUnform, Chevron } from './styles'
 
-function DropSignUp() {
+function SignUp() {
   const { setAuthUser } = useAuth()
   const formRef = useRef(null)
 
@@ -67,4 +67,4 @@ function DropSignUp() {
   )
 }
 
-export default DropSignUp
+export default SignUp
