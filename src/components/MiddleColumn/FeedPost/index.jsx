@@ -1,5 +1,6 @@
-import React from 'react'
-
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useAuth } from '../../../hooks/AuthProvider'
 import {
   Container,
   Wrapper,
@@ -13,6 +14,18 @@ import {
 } from './styles'
 
 function FeedPost() {
+  const {authUser} = useAuth()
+
+  const [postShare, setPostShare] = useState([])
+
+  useEffect(() => {
+    axios.get('/feed').then(resp => {
+      if(resp.data.success){
+        setPostShare(resp.data.)
+      }
+    })
+  }, [])
+
   return (
     <Container className='column-post'>
       <Wrapper>
