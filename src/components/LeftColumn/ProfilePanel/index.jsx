@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import api from '../../../services/api'
 import { useAuth } from '../../../hooks/AuthProvider'
-
+import Gradiente from '../../../assets/gradient.jpg'
 import {
   Container,
   Wrapper,
   BoxImgs,
+  ImgBackgorund,
   ImgProfile,
   BoxRepos,
   Span,
@@ -22,6 +23,7 @@ function ProfilePanel() {
   const [name, setName] = useState('')
   const [title, setTitle] = useState('')
   const [image, setImage] = useState('')
+  const [imageBack, setImageBack] = useState('')
   const [repository, setRepository] = useState('')
   const [followers, setFollowers] = useState('')
   const [bio, setBio] = useState('')
@@ -33,6 +35,7 @@ function ProfilePanel() {
         setName(resp.data.user.name)
         setTitle(resp.data.user.title)
         setImage(resp.data.user.image)
+        setImageBack(resp.data.user.background)
       }
 
       api.get('/users/' + resp.data.user.github_user).then(resp => {
@@ -46,6 +49,7 @@ function ProfilePanel() {
     <Container>
       <Wrapper>
         <BoxImgs>
+          <ImgBackgorund src={imageBack || Gradiente} />
           <ImgProfile src={image || UserProfile} />
         </BoxImgs>
         <Strong>{name}</Strong>

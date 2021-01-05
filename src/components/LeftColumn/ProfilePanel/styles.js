@@ -22,13 +22,20 @@ export const Wrapper = styled.div`
 `
 
 export const BoxImgs = styled.div`
-  background: url(${Gradient});
   height: 110px;
-  border-radius: 10px 10px 0 0;
 
   display: flex;
   justify-content: center;
   align-items: center;
+`
+
+export const ImgBackgorund = styled.img`
+  flex: 1;
+  width: 164px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+
 `
 
 export const ImgProfile = styled.img`
@@ -36,6 +43,7 @@ export const ImgProfile = styled.img`
   height: 80px;
   border-radius: 50%;
   border: 1px solid #ccc;
+  position: absolute;
 `
 
 export const BoxRepos = styled.div`

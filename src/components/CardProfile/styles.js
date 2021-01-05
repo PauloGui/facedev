@@ -26,13 +26,20 @@ export const Wrapper = styled.div`
 `
 
 export const BoxImgs = styled.div`
-  background: url(${Gradient});
   height: 136px;
   border-radius: 10px 10px 0 0;
 
   display: flex;
   justify-content: flex-end;
   position: relative;
+`
+
+export const ImgBackground = styled.img`
+  width: 550px;
+  flex: 1;
+  border-radius: 10px 10px 0 0;
+
+  object-fit: cover;
 `
 
 export const ImgIcon = styled(BiImageAdd)`
@@ -155,6 +162,7 @@ export const TriangleDrop = styled(GoTriangleUp)`
 export const ButtonDrop = styled.button`
   border: 0;
   background: transparent;
+  outline: none;
   color: #575A89;
   padding: 5px;
   text-decoration: underline;

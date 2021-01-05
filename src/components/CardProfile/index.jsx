@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import api from '../../services/api'
 import { useAuth } from '../../hooks/AuthProvider'
 import EditProfile from '../EditProfile'
-
+import Gradiente from '../../assets/gradient.jpg'
 import {
   Container,
   Wrapper,
   BoxImgs,
+  ImgBackground,
   ImgIcon,
   PencilIcon,
   DropRemoveImg,
@@ -25,16 +26,16 @@ import {
 import UserProfile from '../../assets/profile-user.png'
 
 function CardProfile() {
-
-  const { authUser, userData } = useAuth()
+  const inputFile = useRef(null)
+  const { authUser, userData, updateUser } = useAuth()
 
   const [showEditProfile, setShowEditProfile] = useState(false)
   const [showEditImage, setShowEditImage] = useState(false)
   const [showEditImageBanner, setShowEditImageBanner] = useState(false)
-
   const [name, setName] = useState('')
   const [title, setTitle] = useState('')
   const [image, setImage] = useState('')
+  const [imageBack, setImageBack] = useState('')
   const [email, setEmail] = useState('')
   const [repository, setRepository] = useState('')
   const [repo, setRepo] = useState([])
@@ -49,6 +50,7 @@ function CardProfile() {
         setTitle(resp.data.user.title)
         setImage(resp.data.user.image)
         setEmail(resp.data.user.email)
+        setImageBack(resp.data.user.background)
       }
 
       api.get('/users/' + resp.data.user.github_user).then(resp => {
@@ -65,18 +67,56 @@ function CardProfile() {
     })()
   }, [])
 
+  const handleImgProfile = () => {
+    const linkImage = URL.createObjectURL(inputFile.current.files[0])
+    setImage(linkImage)
+
+    const formData = new FormData()
+    formData.append('file', inputFile.current.files[0])
+    axios.put('users/profileImage', formData, { headers: { Authorization: `Bearer ${authUser.token} ` } })
+    .then(resp => {
+      console.log(resp.data)
+        if (resp.data.success) {
+          return updateUser(resp.data.user)
+        }
+      })
+  }
+
+  const handleImgBackground = () => {
+    const linkImage = URL.createObjectURL(inputFile.current.files[0])
+    setImageBack(linkImage)
+
+    const formData = new FormData()
+    formData.append('file', inputFile.current.files[0])
+    axios.put('users/backgroundImage', formData, { headers: { Authorization: `Bearer ${authUser.token} ` } })
+    .then(resp => {
+      console.log(resp.data)
+        if (resp.data.success) {
+          return updateUser(resp.data.user)
+        }
+      })
+  }
+
 
   return (
     <Container>
       <Wrapper>
         <BoxImgs>
+          <ImgBackground src={imageBack || Gradiente} />
           <ImgIcon banner onClick={() => setShowEditImageBanner(!showEditImageBanner)} />
           {
             showEditImageBanner &&
             <DropRemoveImg banner>
               <TriangleDrop />
               <ButtonDrop>Remover foto</ButtonDrop>
-              <ButtonDrop>Alterar foto</ButtonDrop>
+              <input
+                type="file"
+                ref={inputFile}
+                accept='image/png, image/jpeg'
+                style={{ display: 'none' }}
+                onChange={handleImgBackground}
+              />
+              <ButtonDrop onClick={() => inputFile.current.click()}>Alterar foto</ButtonDrop>
             </DropRemoveImg>
           }
           <ContentImg>
@@ -87,7 +127,14 @@ function CardProfile() {
               <DropRemoveImg>
                 <TriangleDrop />
                 <ButtonDrop>Remover foto</ButtonDrop>
-                <ButtonDrop>Alterar foto</ButtonDrop>
+                <input
+                  type="file"
+                  ref={inputFile}
+                  accept='image/png, image/jpeg'
+                  style={{ display: 'none' }}
+                  onChange={handleImgProfile}
+                />
+                <ButtonDrop onClick={() => inputFile.current.click()}>Alterar foto</ButtonDrop>
               </DropRemoveImg>
             }
           </ContentImg>
