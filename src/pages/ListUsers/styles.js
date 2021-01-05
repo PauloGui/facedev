@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
 
   max-width: 1128px;
-  margin: 0 auto;
+  margin: 0 30px;
 `
 
 export const FeedList = styled.div`

@@ -26,7 +26,7 @@ export const Span = styled.span`
   font-size: 12px;
   padding-bottom: 10px;
 
-  ${props => props.title && css`
+  ${props => props.titleUsers && css`
     font-size: 22px;
     font-weight: bold;
     padding: 50px 40px 20px;

@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import api from '../../services/api'
+import { useAuth } from '../../hooks/AuthProvider'
 
 import {
   Container,
@@ -15,119 +18,48 @@ import {
 } from './styles'
 
 function List() {
+  const { authUser } = useAuth()
+  const [listUsers, setListUsers] = useState([])
+  const [repository, setRepository] = useState('')
+  const [followers, setFollowers] = useState('')
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const resp = await axios.get('/indexUsers', { headers: { Authorization: `Bearer ${authUser.token} ` } })
+  //     console.log(resp.data)
+  //     if (resp.data.success) {
+  //       setListUsers(resp.data.users)
+  //     }
+
+  //     api.get('/indexUsers' + resp.data.user.github_user).then(resp => {
+  //       setRepository(resp.data.public_repos)
+  //       setFollowers(resp.data.followers)
+  //     })
+  //   })()
+  // }, [])
+
   return (
     <Container>
       <Wrapper>
-        <Span title>Usuários da plataforma</Span>
+        <Span titleUsers>Usuários da plataforma</Span>
         <Content>
-          <BoxUser>
-            <BoxImgs>
-              <ImgProfile src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4' />
-            </BoxImgs>
-            <Strong>Paulo Sousa</Strong>
-            <Span subtitle>Desenvolvedor Front-End</Span>
-            <hr />
-            <BoxRepos>
-              <Span>90 Repositórios</Span>
-              <Span>53 Seguidores</Span>
-            </BoxRepos>
-          </BoxUser>
-          <BoxUser>
-            <BoxImgs>
-              <ImgProfile src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4' />
-            </BoxImgs>
-            <Strong>Paulo Sousa</Strong>
-            <Span subtitle>Desenvolvedor Front-End</Span>
-            <hr />
-            <BoxRepos>
-              <Span>90 Repositórios</Span>
-              <Span>53 Seguidores</Span>
-            </BoxRepos>
-          </BoxUser>
-          <BoxUser>
-            <BoxImgs>
-              <ImgProfile src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4' />
-            </BoxImgs>
-            <Strong>Paulo Sousa</Strong>
-            <Span subtitle>Desenvolvedor Front-End</Span>
-            <hr />
-            <BoxRepos>
-              <Span>90 Repositórios</Span>
-              <Span>53 Seguidores</Span>
-            </BoxRepos>
-          </BoxUser>
-          <BoxUser>
-            <BoxImgs>
-              <ImgProfile src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4' />
-            </BoxImgs>
-            <Strong>Paulo Sousa</Strong>
-            <Span subtitle>Desenvolvedor Front-End</Span>
-            <hr />
-            <BoxRepos>
-              <Span>90 Repositórios</Span>
-              <Span>53 Seguidores</Span>
-            </BoxRepos>
-          </BoxUser>
-          <BoxUser>
-            <BoxImgs>
-              <ImgProfile src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4' />
-            </BoxImgs>
-            <Strong>Paulo Sousa</Strong>
-            <Span subtitle>Desenvolvedor Front-End</Span>
-            <hr />
-            <BoxRepos>
-              <Span>90 Repositórios</Span>
-              <Span>53 Seguidores</Span>
-            </BoxRepos>
-          </BoxUser>
-          <BoxUser>
-            <BoxImgs>
-              <ImgProfile src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4' />
-            </BoxImgs>
-            <Strong>Paulo Sousa</Strong>
-            <Span subtitle>Desenvolvedor Front-End</Span>
-            <hr />
-            <BoxRepos>
-              <Span>90 Repositórios</Span>
-              <Span>53 Seguidores</Span>
-            </BoxRepos>
-          </BoxUser>
-          <BoxUser>
-            <BoxImgs>
-              <ImgProfile src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4' />
-            </BoxImgs>
-            <Strong>Paulo Sousa</Strong>
-            <Span subtitle>Desenvolvedor Front-End</Span>
-            <hr />
-            <BoxRepos>
-              <Span>90 Repositórios</Span>
-              <Span>53 Seguidores</Span>
-            </BoxRepos>
-          </BoxUser>
-          <BoxUser>
-            <BoxImgs>
-              <ImgProfile src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4' />
-            </BoxImgs>
-            <Strong>Paulo Sousa</Strong>
-            <Span subtitle>Desenvolvedor Front-End</Span>
-            <hr />
-            <BoxRepos>
-              <Span>90 Repositórios</Span>
-              <Span>53 Seguidores</Span>
-            </BoxRepos>
-          </BoxUser>
-          <BoxUser>
-            <BoxImgs>
-              <ImgProfile src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4' />
-            </BoxImgs>
-            <Strong>Paulo Sousa</Strong>
-            <Span subtitle>Desenvolvedor Front-End</Span>
-            <hr />
-            <BoxRepos>
-              <Span>90 Repositórios</Span>
-              <Span>53 Seguidores</Span>
-            </BoxRepos>
-          </BoxUser>
+          {
+            listUsers.map(user => (
+              <BoxUser key={user.id}>
+                <BoxImgs>
+                  <ImgProfile src={user.image}/>
+                </BoxImgs>
+                <Strong> {user.name} </Strong>
+                <Span subtitle> {user.title} </Span>
+                <hr />
+                <BoxRepos>
+                  <Span>{repository} Repositórios</Span>
+                  <Span>{followers} Seguidores</Span>
+                </BoxRepos>
+              </BoxUser>
+            ))
+          }
+
           <ButtonNext>
             <NextPage>Carregar mais itens</NextPage>
           </ButtonNext>
