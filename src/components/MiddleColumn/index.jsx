@@ -30,9 +30,6 @@ function MiddleColumn() {
         <>
           <FeedShare />
           <FeedPost />
-          <FeedPost />
-          <FeedPost />
-          <FeedPost />
         </>
       )}
     </Container>

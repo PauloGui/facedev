@@ -55,5 +55,9 @@ export const Span = styled.span`
 export const TextPost = styled.span`
   padding: 10px;
   font-size: 14px;
-  text-align: justify;
+`
+export const ImgPost = styled.img`
+  flex:1;
+  width: 510px;
+  margin: 5px 0 0 0;
 `

@@ -10,37 +10,43 @@ import {
   InfoProfile,
   Strong,
   Span,
+  ImgPost,
   TextPost
 } from './styles'
 
 function FeedPost() {
-  const {authUser} = useAuth()
+  const { authUser } = useAuth()
 
   const [postShare, setPostShare] = useState([])
 
-  // useEffect(() => {
-  //   axios.get('/feed').then(resp => {
-  //     if(resp.data.success){
-  //       setPostShare(resp.data.)
-  //     }
-  //   })
-  // }, [])
+  useEffect(() => {
+    axios.get('/feed', { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
+      if (resp.data.success) {
+        setPostShare(resp.data.feed)
+      }
+    })
+  }, [])
 
   return (
     <Container className='column-post'>
       <Wrapper>
-        <BoxPost>
-          <Profile>
-            <ImgProfile src='https://avatars1.githubusercontent.com/u/39929216?s=460&u=c9b3883256d47c27e80cc45b9bfd02cdd7090b4b&v=4' />
-            <InfoProfile>
-              <Strong>Jefferson Patrício</Strong>
-              <Span>Líder de Desenvolvimento</Span>
-            </InfoProfile>
-          </Profile>
-          <TextPost>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
-          </TextPost>
-        </BoxPost>
+        {
+          postShare.map(posts => (
+            <BoxPost key={posts.id}>
+              <Profile>
+                <ImgProfile src={posts.user_image} />
+                <InfoProfile>
+                  <Strong>{posts.user_name}</Strong>
+                  <Span>{posts.user_title}</Span>
+                </InfoProfile>
+              </Profile>
+              <TextPost>
+                {posts.description}
+                <ImgPost src={posts.image} />
+              </TextPost>
+            </BoxPost>
+          ))
+        }
       </Wrapper>
     </Container>
   )

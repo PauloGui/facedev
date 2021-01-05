@@ -71,4 +71,5 @@ export const Button = styled.button`
   color: #fff;
   font-size: 16px;
   font-weight: bold;
+  outline: none;
 `
