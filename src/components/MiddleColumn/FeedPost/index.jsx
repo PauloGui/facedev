@@ -18,13 +18,13 @@ function FeedPost() {
 
   const [postShare, setPostShare] = useState([])
 
-  useEffect(() => {
-    axios.get('/feed').then(resp => {
-      if(resp.data.success){
-        setPostShare(resp.data.)
-      }
-    })
-  }, [])
+  // useEffect(() => {
+  //   axios.get('/feed').then(resp => {
+  //     if(resp.data.success){
+  //       setPostShare(resp.data.)
+  //     }
+  //   })
+  // }, [])
 
   return (
     <Container className='column-post'>

@@ -26,7 +26,7 @@ import UserProfile from '../../assets/profile-user.png'
 
 function CardProfile() {
 
-  const { authUser } = useAuth()
+  const { authUser, userData } = useAuth()
 
   const [showEditProfile, setShowEditProfile] = useState(false)
   const [showEditImage, setShowEditImage] = useState(false)
@@ -92,7 +92,7 @@ function CardProfile() {
             }
           </ContentImg>
         </BoxImgs>
-        <Strong>{name} <PencilIcon onClick={() => setShowEditProfile(!showEditProfile)} /> </Strong>
+        <Strong>{userData.name} <PencilIcon onClick={() => setShowEditProfile(!showEditProfile)} /> </Strong>
         {
           showEditProfile &&
           <EditProfile />
@@ -111,7 +111,7 @@ function CardProfile() {
         <Repositories>
           {
             repo.map((reps) => (
-              <ul>
+              <ul key={reps.id}>
                 <li>{reps}</li>
               </ul>
             ))

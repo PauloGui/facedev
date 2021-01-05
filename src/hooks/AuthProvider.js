@@ -7,7 +7,7 @@ const AuthContext = createContext()
 function AuthProvider({ children }) {
 
   const [authUser, setAuthUser] = useState({ authenticated: false })
-  const [userData, setUserData] = useState(null)
+  const [userData, setUserData] = useState({})
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -18,12 +18,12 @@ function AuthProvider({ children }) {
       if (data.success) {
         setAuthUser({ authenticated: true, token })
         const user = localStorage.getItem('@facedev_user')
+        console.log(user)
         setUserData(JSON.parse(user))
       }
       setLoading(false)
     })
   }, [])
-
 
   const signIn = useCallback(async (token, user) => {
     setAuthUser({
@@ -36,8 +36,13 @@ function AuthProvider({ children }) {
     localStorage.setItem('@facedev_user', JSON.stringify(user))
   }, [])
 
+  const updateUser = useCallback(async (user) => {
+    setUserData(user)
+    localStorage.setItem('@facedev_user', JSON.stringify(user))
+  }, [])
+
   return (
-    <AuthContext.Provider value={{ authUser, setAuthUser, signIn, userData }}>
+    <AuthContext.Provider value={{ authUser, setAuthUser, signIn, userData, setUserData, updateUser }}>
       {
         loading &&
         <LoadingLandingPage />
