@@ -1,4 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import api from '../../services/api'
+import { useAuth } from '../../hooks/AuthProvider'
 import EditProfile from '../EditProfile'
 
 import {
@@ -19,12 +22,48 @@ import {
   Bio,
   Repositories
 } from './styles'
+import UserProfile from '../../assets/profile-user.png'
 
 function CardProfile() {
+
+  const { authUser } = useAuth()
 
   const [showEditProfile, setShowEditProfile] = useState(false)
   const [showEditImage, setShowEditImage] = useState(false)
   const [showEditImageBanner, setShowEditImageBanner] = useState(false)
+
+  const [name, setName] = useState('')
+  const [title, setTitle] = useState('')
+  const [image, setImage] = useState('')
+  const [email, setEmail] = useState('')
+  const [repository, setRepository] = useState('')
+  const [repo, setRepo] = useState([])
+  const [followers, setFollowers] = useState('')
+  const [bio, setBio] = useState('')
+
+  useEffect(() => {
+    (async () => {
+      const resp = await axios.get('/users', { headers: { Authorization: `Bearer ${authUser.token} ` } })
+      if (resp.data.success) {
+        setName(resp.data.user.name)
+        setTitle(resp.data.user.title)
+        setImage(resp.data.user.image)
+        setEmail(resp.data.user.email)
+      }
+
+      api.get('/users/' + resp.data.user.github_user).then(resp => {
+        setRepository(resp.data.public_repos)
+        setFollowers(resp.data.followers)
+        setBio(resp.data.bio)
+      })
+
+      api.get(`/users/${resp.data.user.github_user}/repos`).then(resp => {
+        const repos = resp.data.map((rep) => rep.name)
+        setRepo(repos)
+        console.log(resp.data)
+      })
+    })()
+  }, [])
 
 
   return (
@@ -33,15 +72,15 @@ function CardProfile() {
         <BoxImgs>
           <ImgIcon banner onClick={() => setShowEditImageBanner(!showEditImageBanner)} />
           {
-              showEditImageBanner &&
-              <DropRemoveImg banner>
-                <TriangleDrop />
-                <ButtonDrop>Remover foto</ButtonDrop>
-                <ButtonDrop>Alterar foto</ButtonDrop>
-              </DropRemoveImg>
-            }
+            showEditImageBanner &&
+            <DropRemoveImg banner>
+              <TriangleDrop />
+              <ButtonDrop>Remover foto</ButtonDrop>
+              <ButtonDrop>Alterar foto</ButtonDrop>
+            </DropRemoveImg>
+          }
           <ContentImg>
-            <ImgProfile src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4' />
+            <ImgProfile src={image || UserProfile} />
             <ImgIcon profile onClick={() => setShowEditImage(!showEditImage)} />
             {
               showEditImage &&
@@ -53,27 +92,30 @@ function CardProfile() {
             }
           </ContentImg>
         </BoxImgs>
-        <Strong>Paulo Sousa <PencilIcon onClick={() => setShowEditProfile(!showEditProfile)} /> </Strong>
+        <Strong>{name} <PencilIcon onClick={() => setShowEditProfile(!showEditProfile)} /> </Strong>
         {
           showEditProfile &&
           <EditProfile />
         }
-        <Span title>Desenvolvedor Front-End</Span>
-        <Span email>paulo@dev.com</Span>
+        <Span title>{title}</Span>
+        <Span email>{email}</Span>
         <BoxRepos>
-          <SpanRepo>90 Repositórios</SpanRepo>
-          <SpanRepo>53 Seguidores</SpanRepo>
+          <SpanRepo>{repository} Repositórios</SpanRepo>
+          <SpanRepo>{followers} Seguidores</SpanRepo>
         </BoxRepos>
         <hr />
         <Strong bio>GitHub Bio</Strong>
-        <Bio>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</Bio>
+        <Bio> {bio} </Bio>
         <hr />
+        <Strong>Meus Repositórios</Strong>
         <Repositories>
-          <ul>
-            <li>SavePoints</li>
-            <li>Noteact</li>
-            <li>FaceDev</li>
-          </ul>
+          {
+            repo.map((reps) => (
+              <ul>
+                <li>{reps}</li>
+              </ul>
+            ))
+          }
         </Repositories>
       </Wrapper>
     </Container>

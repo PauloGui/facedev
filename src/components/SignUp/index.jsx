@@ -1,4 +1,4 @@
-import React, {useCallback, useRef} from 'react'
+import React, { useCallback, useRef } from 'react'
 import * as yup from 'yup'
 import axios from 'axios'
 import { useAuth } from '../../hooks/AuthProvider'
@@ -6,7 +6,7 @@ import Input from '../Input'
 import { Container, FormUnform, Chevron } from './styles'
 
 function SignUp() {
-  const { setAuthUser } = useAuth()
+  const { signIn } = useAuth()
   const formRef = useRef(null)
 
   const handleSubmit = useCallback(async (data) => {
@@ -37,10 +37,14 @@ function SignUp() {
       signUp.password = data.password
 
       const resp = await axios.post('users', signUp)
-      setAuthUser({ authenticated: true, token: resp.data.auth})
-      localStorage.setItem('@facedev_token', resp.data.auth)
-    }catch(err) {
-      if(err instanceof yup.ValidationError) {
+      if (resp.data.success) {
+        signIn(resp.data.auth, resp.data.user)
+        return
+      }
+
+      alert(resp.data.message)
+    } catch (err) {
+      if (err instanceof yup.ValidationError) {
         const validationErrors = {}
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message

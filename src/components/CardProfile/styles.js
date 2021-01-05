@@ -163,5 +163,14 @@ export const ButtonDrop = styled.button`
 
 export const Repositories = styled.div`
   display: flex;
+  flex-wrap: wrap;
   padding: 20px 50px;
+
+  ul {
+    flex: 1;
+    flex-wrap: nowrap;
+  }
+ li{
+    padding-right: 30px;
+  }
 `
