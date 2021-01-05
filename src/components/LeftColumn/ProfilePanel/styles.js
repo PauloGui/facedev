@@ -62,6 +62,7 @@ export const Span = styled.span`
 
   ${props => props.titleProfile && css`
     align-self: center;
+    text-align: center;
     padding: 5px 0 10px 0;
   `}
 `

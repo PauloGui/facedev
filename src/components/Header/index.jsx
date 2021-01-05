@@ -18,6 +18,7 @@ import {
   UserProfileIcon,
   LogOutIcon
 } from './styles'
+import Profile from '../../assets/profile-user.png'
 import Logo from '../../assets/logo.png'
 import { useAuth } from '../../hooks/AuthProvider'
 
@@ -63,7 +64,7 @@ function Header() {
             <Link to='/users'><UsersIcon /></Link>
           </Button>
           <Button onClick={() => setShowProfile(!showProfile)}>
-            <ProfileCircle src={image} />
+            <ProfileCircle src={image || Profile} />
             <CaretDownIcon />
             {
               showProfile &&
@@ -72,8 +73,8 @@ function Header() {
                 <Link to='/profile'> <UserProfileIcon />Meu Perfil</Link>
                 <button exit onClick={() => {
                   localStorage.removeItem('@facedev_token')
-                  setAuthUser({ authenticated: false })
-                }}> <LogOutIcon /> Sair</button>
+                  setAuthUser({ Authenticated: false })
+                }}> <LogOutIcon  /> Sair</button>
               </DropProfile>
             }
           </Button>
