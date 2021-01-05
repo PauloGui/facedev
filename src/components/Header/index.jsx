@@ -22,8 +22,9 @@ import Logo from '../../assets/logo.png'
 import { useAuth } from '../../hooks/AuthProvider'
 
 function Header() {
-  const { setAuthUser } = useAuth()
+  const { setAuthUser, authUser } = useAuth()
   const [userSearch, setUserSearch] = useState('')
+  const [image, setImage] = useState('')
   const [showProfile, setShowProfile] = useState(false)
 
   useEffect(() => {
@@ -37,6 +38,15 @@ function Header() {
       alert('Usuário não cadastrado!')
     })
   }
+
+  useEffect(() => {
+    axios.get('/users', { headers: { Authorization: `Bearer ${authUser.token} ` } })
+    .then(resp => {
+      if (resp.data.success) {
+        setImage(resp.data.user.image)
+      }
+    })
+  }, [])
 
   return (
     <Container>
@@ -53,7 +63,7 @@ function Header() {
             <Link to='/users'><UsersIcon /></Link>
           </Button>
           <Button onClick={() => setShowProfile(!showProfile)}>
-            <ProfileCircle src='https://avatars2.githubusercontent.com/u/18484968?s=460&u=34bd09cf09ce881107031c526e541caf1bca01c9&v=4' />
+            <ProfileCircle src={image} />
             <CaretDownIcon />
             {
               showProfile &&

@@ -32,6 +32,7 @@ export const BoxImgs = styled.div`
 export const ImgBackgorund = styled.img`
   flex: 1;
   width: 164px;
+  height: 100%;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
   position: relative;

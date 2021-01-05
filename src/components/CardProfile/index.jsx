@@ -62,7 +62,6 @@ function CardProfile() {
       api.get(`/users/${resp.data.user.github_user}/repos`).then(resp => {
         const repos = resp.data.map((rep) => rep.name)
         setRepo(repos)
-        console.log(resp.data)
       })
     })()
   }, [])
@@ -75,7 +74,6 @@ function CardProfile() {
     formData.append('file', inputFile.current.files[0])
     axios.put('users/profileImage', formData, { headers: { Authorization: `Bearer ${authUser.token} ` } })
     .then(resp => {
-      console.log(resp.data)
         if (resp.data.success) {
           return updateUser(resp.data.user)
         }
@@ -90,10 +88,26 @@ function CardProfile() {
     formData.append('file', inputFile.current.files[0])
     axios.put('users/backgroundImage', formData, { headers: { Authorization: `Bearer ${authUser.token} ` } })
     .then(resp => {
-      console.log(resp.data)
         if (resp.data.success) {
           return updateUser(resp.data.user)
         }
+      })
+  }
+
+  const removeProfile = () => {
+    axios.delete('users/profileImage', { headers: { Authorization: `Bearer ${authUser.token} ` } })
+    .then(resp => {
+      if (resp.data.success) {
+        return updateUser(resp.data.user)
+      }
+      })
+  }
+  const removeBackground = () => {
+    axios.delete('users/backgroundImage', { headers: { Authorization: `Bearer ${authUser.token} ` } })
+    .then(resp => {
+      if (resp.data.success) {
+        return updateUser(resp.data.user)
+      }
       })
   }
 
@@ -108,7 +122,7 @@ function CardProfile() {
             showEditImageBanner &&
             <DropRemoveImg banner>
               <TriangleDrop />
-              <ButtonDrop>Remover foto</ButtonDrop>
+              <ButtonDrop onClick={removeBackground}>Remover foto</ButtonDrop>
               <input
                 type="file"
                 ref={inputFile}
@@ -126,7 +140,7 @@ function CardProfile() {
               showEditImage &&
               <DropRemoveImg>
                 <TriangleDrop />
-                <ButtonDrop>Remover foto</ButtonDrop>
+                <ButtonDrop onClick={removeProfile}>Remover foto</ButtonDrop>
                 <input
                   type="file"
                   ref={inputFile}
