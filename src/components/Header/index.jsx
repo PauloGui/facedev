@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import InputSearch from '../InputSearch'
 import axios from 'axios'
 import {
@@ -16,15 +16,18 @@ import {
   DropProfile,
   TriangleDrop,
   UserProfileIcon,
-  LogOutIcon
+  LogOutIcon,
+  ContainerInput
 } from './styles'
 import Profile from '../../assets/profile-user.png'
 import Logo from '../../assets/logo.png'
 import { useAuth } from '../../hooks/AuthProvider'
 
 function Header() {
+
   const { setAuthUser, authUser } = useAuth()
-  const [userSearch, setUserSearch] = useState('')
+
+  const [userSearch, setUserSearch] = useState([])
   const [image, setImage] = useState('')
   const [showProfile, setShowProfile] = useState(false)
 
@@ -42,11 +45,11 @@ function Header() {
 
   useEffect(() => {
     axios.get('/users', { headers: { Authorization: `Bearer ${authUser.token} ` } })
-    .then(resp => {
-      if (resp.data.success) {
-        setImage(resp.data.user.image)
-      }
-    })
+      .then(resp => {
+        if (resp.data.success) {
+          setImage(resp.data.user.image)
+        }
+      })
   }, [])
 
   return (
@@ -54,7 +57,7 @@ function Header() {
       <Wrapper>
         <Left>
           <Link to='/'><LogoImg src={Logo} /></Link>
-          <InputSearch value={userSearch} />
+          <InputSearch />
         </Left>
         <Right>
           <Button className='active'>
@@ -74,7 +77,7 @@ function Header() {
                 <button exit onClick={() => {
                   localStorage.removeItem('@facedev_token')
                   setAuthUser({ Authenticated: false })
-                }}> <LogOutIcon  /> Sair</button>
+                }}> <LogOutIcon /> Sair</button>
               </DropProfile>
             }
           </Button>

@@ -35,6 +35,11 @@ export const  Left = styled.div`
   align-items: center;
 
 `
+export const  ContainerInput = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+`
 
 export const  LogoImg = styled.img`
   height: 55px;

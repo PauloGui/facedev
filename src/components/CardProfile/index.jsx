@@ -44,7 +44,8 @@ function CardProfile() {
 
   useEffect(() => {
     (async () => {
-      const resp = await axios.get('/users', { headers: { Authorization: `Bearer ${authUser.token} ` } })
+      const resp = await axios.get('/users',
+        { headers: { Authorization: `Bearer ${authUser.token} ` } })
       if (resp.data.success) {
         setName(resp.data.user.name)
         setTitle(resp.data.user.title)
@@ -72,8 +73,9 @@ function CardProfile() {
 
     const formData = new FormData()
     formData.append('file', inputFile.current.files[0])
-    axios.put('users/profileImage', formData, { headers: { Authorization: `Bearer ${authUser.token} ` } })
-    .then(resp => {
+    axios.put('users/profileImage', formData,
+      { headers: { Authorization: `Bearer ${authUser.token} ` } })
+      .then(resp => {
         if (resp.data.success) {
           return updateUser(resp.data.user)
         }
@@ -86,8 +88,9 @@ function CardProfile() {
 
     const formData = new FormData()
     formData.append('file', inputFile.current.files[0])
-    axios.put('users/backgroundImage', formData, { headers: { Authorization: `Bearer ${authUser.token} ` } })
-    .then(resp => {
+    axios.put('users/backgroundImage', formData,
+      { headers: { Authorization: `Bearer ${authUser.token} ` } })
+      .then(resp => {
         if (resp.data.success) {
           return updateUser(resp.data.user)
         }
@@ -95,19 +98,21 @@ function CardProfile() {
   }
 
   const removeProfile = () => {
-    axios.delete('users/profileImage', { headers: { Authorization: `Bearer ${authUser.token} ` } })
-    .then(resp => {
-      if (resp.data.success) {
-        return updateUser(resp.data.user)
-      }
+    axios.delete('users/profileImage',
+      { headers: { Authorization: `Bearer ${authUser.token} ` } })
+      .then(resp => {
+        if (resp.data.success) {
+          return updateUser(resp.data.user)
+        }
       })
   }
   const removeBackground = () => {
-    axios.delete('users/backgroundImage', { headers: { Authorization: `Bearer ${authUser.token} ` } })
-    .then(resp => {
-      if (resp.data.success) {
-        return updateUser(resp.data.user)
-      }
+    axios.delete('users/backgroundImage',
+      { headers: { Authorization: `Bearer ${authUser.token} ` } })
+      .then(resp => {
+        if (resp.data.success) {
+          return updateUser(resp.data.user)
+        }
       })
   }
 
