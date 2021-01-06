@@ -10,7 +10,7 @@ function PrivateRoutes() {
       <Switch>
         <Route path='/' exact component={Feed} />
         <Route path='/users' component={ListUsers} />
-        <Route path='/profile' component={Profile} />
+        <Route path='/profile/:userId' component={Profile} />
       </Switch>
     </BrowserRouter>
   )

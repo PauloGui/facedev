@@ -20,23 +20,24 @@ import {
 function List() {
   const { authUser } = useAuth()
   const [listUsers, setListUsers] = useState([])
-  const [repository, setRepository] = useState('')
-  const [followers, setFollowers] = useState('')
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const resp = await axios.get('/indexUsers', { headers: { Authorization: `Bearer ${authUser.token} ` } })
-  //     console.log(resp.data)
-  //     if (resp.data.success) {
-  //       setListUsers(resp.data.users)
-  //     }
+  useEffect(() => {
+    (async () => {
+      const resp = await axios.get('/indexUsers', { headers: { Authorization: `Bearer ${authUser.token} ` } })
+      if (resp.data.success) {
+        const usersGit = resp.data.users
 
-  //     api.get('/indexUsers' + resp.data.user.github_user).then(resp => {
-  //       setRepository(resp.data.public_repos)
-  //       setFollowers(resp.data.followers)
-  //     })
-  //   })()
-  // }, [])
+        for (let i = 0; i < resp.data.users.length; i++) {
+          const respGit = await api.get('/users/' + resp.data.users[i].github_user)
+          usersGit[i].public_repos = respGit.data.public_repos
+          usersGit[i].followers = respGit.data.followers
+        }
+        setListUsers(usersGit)
+      }
+
+
+    })()
+  }, [])
 
   return (
     <Container>
@@ -47,14 +48,14 @@ function List() {
             listUsers.map(user => (
               <BoxUser key={user.id}>
                 <BoxImgs>
-                  <ImgProfile src={user.image}/>
+                  <ImgProfile src={user.image} />
                 </BoxImgs>
                 <Strong> {user.name} </Strong>
                 <Span subtitle> {user.title} </Span>
                 <hr />
                 <BoxRepos>
-                  <Span>{repository} Repositórios</Span>
-                  <Span>{followers} Seguidores</Span>
+                  <Span>{user.public_repos} Repositórios</Span>
+                  <Span>{user.followers} Seguidores</Span>
                 </BoxRepos>
               </BoxUser>
             ))

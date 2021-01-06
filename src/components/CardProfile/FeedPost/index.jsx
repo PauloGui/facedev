@@ -20,7 +20,7 @@ function FeedPost() {
   const [postShare, setPostShare] = useState([])
 
   useEffect(() => {
-    axios.get('/users',
+    axios.get('/profile/',
       { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
         if (resp.data.success) {
           setPostShare(resp.data.user.feed)

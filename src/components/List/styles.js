@@ -34,6 +34,7 @@ export const Span = styled.span`
 
   ${props => props.subtitle && css`
     align-self: center;
+    text-align: center;
     padding: 0 0 10px;
   `}
 `
