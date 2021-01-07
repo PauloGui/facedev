@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
-import { Container, Input, Searchicon, Button, CloseIcon, ContainerInput, ContainerListUsers } from './styles'
+import {Link} from 'react-router-dom'
+import { Container, Input, Searchicon, Texts, Button, CloseIcon, ContainerInput, ContainerListUsers } from './styles'
 
 function InputSearch() {
 
@@ -54,9 +54,15 @@ function InputSearch() {
         <ContainerListUsers>
           {
             results.map((user, index) => (
-              <div key={index}>
-                <h4>{user.name}</h4>
-              </div>
+              <Link to={`/profile/${user.id}`}>
+                <div key={index}>
+                  <img src={user.image} />
+                  <Texts>
+                    <strong>{user.name}</strong>
+                    <span>{user.title}</span>
+                  </Texts>
+                </div>
+              </Link>
             ))
           }
         </ContainerListUsers>

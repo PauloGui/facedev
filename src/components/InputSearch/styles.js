@@ -53,6 +53,7 @@ export const CloseIcon = styled(FiX)``
 
 export const ContainerListUsers = styled.div`
   display: flex;
+  flex-direction: column;
   position: absolute;
   top: 30px;
   align-self: stretch;
@@ -61,4 +62,27 @@ export const ContainerListUsers = styled.div`
   width: 100%;
   margin-left: 16px;
   box-shadow: 2px 2px 5px #000;
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  div {
+    display: flex;
+    margin-bottom: 5px;
+  }
+`
+
+export const Texts = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
 `
