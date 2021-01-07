@@ -27,13 +27,13 @@ export const BoxPost = styled.div`
   }
 `
 
-export const Profile = styled.div`
+export const ProfilePost = styled.div`
   display: flex;
   align-items: center;
   padding: 10px 0;
 `
 
-export const ImgProfile = styled.img`
+export const ImgProfilePost = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -46,9 +46,9 @@ export const InfoProfile = styled.div`
   padding-left: 10px;
 `
 
-export const Strong = styled.strong``
+export const StrongPost = styled.strong``
 
-export const Span = styled.span`
+export const SpanPost = styled.span`
   font-size: 12px;
 `
 

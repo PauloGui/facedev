@@ -73,7 +73,7 @@ function Header() {
               showProfile &&
               <DropProfile>
                 <TriangleDrop />
-                <Link to='/profile/:userId'> <UserProfileIcon />Meu Perfil</Link>
+                <Link to='/profile/1'> <UserProfileIcon />Meu Perfil</Link>
                 <button exit onClick={() => {
                   localStorage.removeItem('@facedev_token')
                   setAuthUser({ Authenticated: false })

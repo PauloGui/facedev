@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import Gradient from '../../assets/gradient.jpg'
 import {BiImageAdd} from 'react-icons/bi'
 import {BsPencilSquare} from 'react-icons/bs'
 import { GoTriangleUp } from 'react-icons/go'
@@ -54,7 +53,7 @@ export const ImgIcon = styled(BiImageAdd)`
   z-index: 2;
   position: absolute;
 
-  ${props => props.banner && css`
+  ${props => props.bannerstyle && css`
     align-self: flex-end;
     margin-right: 10px;
     margin-bottom: -10px;
@@ -93,7 +92,7 @@ export const BoxRepos = styled.div`
 export const Span = styled.span`
   font-size: 16px;
 
-  ${props => props.title && css`
+  ${props => props.titleProfile && css`
   padding-left: 30px;
   `}
   ${props => props.email && css`
@@ -143,7 +142,7 @@ export const DropRemoveImg = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  ${props => props.banner && css`
+  ${props => props.bannerDrop && css`
     margin-top: 150px;
     margin-right: -5px;
   `}

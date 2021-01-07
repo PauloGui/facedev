@@ -21,6 +21,11 @@ export const Wrapper = styled.div`
     width: 90%;
     align-self: center;
   }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
 `
  
 export const Span = styled.span`

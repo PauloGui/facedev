@@ -1,5 +1,6 @@
 import styled, {css} from 'styled-components'
 import {RiImageAddFill} from 'react-icons/ri'
+import {shade} from 'polished'
 
 export const Container = styled.div`
   padding: 60px 0 0;
@@ -72,4 +73,10 @@ export const Button = styled.button`
   font-size: 16px;
   font-weight: bold;
   outline: none;
+  cursor: pointer;
+  transition: 0.2s;
+
+  :hover {
+    background: ${shade(0.2, '#8DE4FF')};
+  }
 `

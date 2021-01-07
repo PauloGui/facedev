@@ -13,6 +13,7 @@ import {
   ImgPost,
   TextPost
 } from './styles'
+import { Link } from 'react-router-dom'
 
 function FeedPost() {
   const { authUser } = useAuth()
@@ -25,21 +26,24 @@ function FeedPost() {
         setPostShare(resp.data.feed)
       }
     })
-  }, [])
+  }, [postShare])
 
   return (
     <Container className='column-post'>
       <Wrapper>
         {
           postShare.map(posts => (
+
             <BoxPost key={posts.id}>
-              <Profile>
-                <ImgProfile src={posts.user_image} />
-                <InfoProfile>
-                  <Strong>{posts.user_name}</Strong>
-                  <Span>{posts.user_title}</Span>
-                </InfoProfile>
-              </Profile>
+              <Link to={`/profile/${posts.user_id}`} >
+                <Profile>
+                  <ImgProfile src={posts.user_image} />
+                  <InfoProfile>
+                    <Strong>{posts.user_name}</Strong>
+                    <Span>{posts.user_title}</Span>
+                  </InfoProfile>
+                </Profile>
+              </Link>
               <TextPost>
                 {posts.description}
                 <ImgPost src={posts.image} />

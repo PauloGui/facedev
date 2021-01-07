@@ -43,10 +43,20 @@ export const Content = styled.div`
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
+
+  a {
+    text-decoration: none;
+    color: #000;
+
+    hr {
+      border: 1px solid #ccc;
+    }
+  }
 `
 
 export const BoxUser = styled.div`
   width: 164px;
+  height: 250px;
   border-radius: 10px;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
   margin: 10px 20px;
@@ -56,20 +66,33 @@ export const BoxUser = styled.div`
 `
 
 export const BoxImgs = styled.div`
-
-background: url(${Gradient});
   height: 110px;
   border-radius: 10px 10px 0 0;
 
   display: flex;
   justify-content: center;
-  align-items: center;`
+  align-items: center;
+`
+
+export const ImgBackground = styled.img`
+  width: 164px;
+  height: 110px;
+  position: relative;
+  border-radius: 10px 10px 0 0;
+  object-fit: cover;
+`
 
 export const ImgProfile = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 50%;
   border: 1px solid #ccc;
+  position: absolute;
+`
+export const BoxTexts = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 80px;
 `
 
 export const Strong = styled.strong`

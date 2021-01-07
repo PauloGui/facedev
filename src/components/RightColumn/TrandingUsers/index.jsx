@@ -13,6 +13,7 @@ import {
   SubTitile
 } from './styles'
 import UserProfile from '../../../assets/profile-user.png'
+import { Link } from 'react-router-dom'
 
 function TrandingUsers() {
 
@@ -36,13 +37,15 @@ function TrandingUsers() {
         <hr />
         {
           lastUsers.map(last => (
-            <BoxUser key={last.id}>
-              <ImgProfile src={last.image || UserProfile} />
-              <User>
-                <Strong>{last.name}</Strong>
-                <SubTitile>{last.title}</SubTitile>
-              </User>
-            </BoxUser>
+            <Link to={`/profile/${last.id}`} key={last.id}>
+              <BoxUser >
+                <ImgProfile src={last.image || UserProfile} />
+                <User>
+                  <Strong>{last.name}</Strong>
+                  <SubTitile>{last.title}</SubTitile>
+                </User>
+              </BoxUser>
+            </Link>
           ))
         }
       </Wrapper>

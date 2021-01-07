@@ -10,12 +10,16 @@ import {
   Content,
   BoxUser,
   BoxImgs,
+  ImgBackground,
   ImgProfile,
+  BoxTexts,
   Strong,
   BoxRepos,
   ButtonNext,
   NextPage
 } from './styles'
+import Back from '../../assets/gradient.jpg'
+import { Link } from 'react-router-dom'
 
 function List() {
   const { authUser } = useAuth()
@@ -46,18 +50,23 @@ function List() {
         <Content>
           {
             listUsers.map(user => (
-              <BoxUser key={user.id}>
-                <BoxImgs>
-                  <ImgProfile src={user.image} />
-                </BoxImgs>
-                <Strong> {user.name} </Strong>
-                <Span subtitle> {user.title} </Span>
-                <hr />
-                <BoxRepos>
-                  <Span>{user.public_repos} Repositórios</Span>
-                  <Span>{user.followers} Seguidores</Span>
-                </BoxRepos>
-              </BoxUser>
+              <Link to={`/profile/${user.id}`} key={user.id}>
+                <BoxUser>
+                  <BoxImgs>
+                    <ImgBackground src={user.background || Back} />
+                    <ImgProfile src={user.image} />
+                  </BoxImgs>
+                  <BoxTexts>
+                    <Strong> {user.name} </Strong>
+                    <Span subtitle> {user.title} </Span>
+                  </BoxTexts>
+                  <hr />
+                  <BoxRepos>
+                    <Span>{user.public_repos} Repositórios</Span>
+                    <Span>{user.followers} Seguidores</Span>
+                  </BoxRepos>
+                </BoxUser>
+              </Link>
             ))
           }
 

@@ -25,6 +25,11 @@ export const BoxPost = styled.div`
   & + div {
     margin-top: 10px;
   }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
 `
 
 export const Profile = styled.div`

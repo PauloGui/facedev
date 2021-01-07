@@ -2,21 +2,19 @@ import React from 'react'
 import CardProfile from '../../components/CardProfile'
 import Header from '../../components/Header'
 import RightColumn from '../../components/RightColumn'
-import FeedPost from '../../components/MiddleColumn/FeedPost'
+import FeedPost from '../../components/CardProfile/FeedPost'
 
 import { Container, Wrapper, ContentProfile } from './styles'
 
-function Profile() {
+function Profile({match}) {
 
   return(
     <Container>
       <Header />
       <Wrapper>
         <ContentProfile>
-          <CardProfile />
-          <FeedPost />
-          <FeedPost />
-          <FeedPost />
+          <CardProfile match={match} />
+          <FeedPost match={match} />
         </ContentProfile>
         <RightColumn />
       </Wrapper>

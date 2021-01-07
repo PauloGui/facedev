@@ -21,11 +21,11 @@ import {
   SpanRepo,
   Strong,
   Bio,
-  Repositories
+  Repositories,
 } from './styles'
 import UserProfile from '../../assets/profile-user.png'
 
-function CardProfile() {
+function CardProfile({ match }) {
   const inputFile = useRef(null)
   const { authUser, userData, updateUser } = useAuth()
 
@@ -42,9 +42,13 @@ function CardProfile() {
   const [followers, setFollowers] = useState('')
   const [bio, setBio] = useState('')
 
+  const [postShare, setPostShare] = useState([])
+
+
   useEffect(() => {
     (async () => {
-      const resp = await axios.get('/users',
+      console.log(match.params.userId)
+      const resp = await axios.get(`/profile/${match.params.userId}`,
         { headers: { Authorization: `Bearer ${authUser.token} ` } })
       if (resp.data.success) {
         setName(resp.data.user.name)
@@ -52,6 +56,7 @@ function CardProfile() {
         setImage(resp.data.user.image)
         setEmail(resp.data.user.email)
         setImageBack(resp.data.user.background)
+        setPostShare(resp.data.feed)
       }
 
       api.get('/users/' + resp.data.user.github_user).then(resp => {
@@ -122,10 +127,10 @@ function CardProfile() {
       <Wrapper>
         <BoxImgs>
           <ImgBackground src={imageBack || Gradiente} />
-          <ImgIcon banner onClick={() => setShowEditImageBanner(!showEditImageBanner)} />
+          <ImgIcon bannerstyle='true' onClick={() => setShowEditImageBanner(!showEditImageBanner)} />
           {
             showEditImageBanner &&
-            <DropRemoveImg banner>
+            <DropRemoveImg bannerDrop>
               <TriangleDrop />
               <ButtonDrop onClick={removeBackground}>Remover foto</ButtonDrop>
               <input
@@ -140,7 +145,7 @@ function CardProfile() {
           }
           <ContentImg>
             <ImgProfile src={image || UserProfile} />
-            <ImgIcon profile onClick={() => setShowEditImage(!showEditImage)} />
+            <ImgIcon profile='true' onClick={() => setShowEditImage(!showEditImage)} />
             {
               showEditImage &&
               <DropRemoveImg>
@@ -158,12 +163,12 @@ function CardProfile() {
             }
           </ContentImg>
         </BoxImgs>
-        <Strong>{userData.name} <PencilIcon onClick={() => setShowEditProfile(!showEditProfile)} /> </Strong>
+        <Strong>{name} <PencilIcon onClick={() => setShowEditProfile(!showEditProfile)} /> </Strong>
         {
           showEditProfile &&
           <EditProfile />
         }
-        <Span title>{title}</Span>
+        <Span titleProfile>{title}</Span>
         <Span email>{email}</Span>
         <BoxRepos>
           <SpanRepo>{repository} Repositórios</SpanRepo>
